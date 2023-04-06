@@ -16,30 +16,41 @@
 
         <activity
             android:name=".ui.OyunSifirlaActivity"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+            android:exported="true"/>
 
         <activity
             android:name=".ui.SoruDuzenleActivitiy"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+            android:exported="true"/>
         <activity
             android:name=".ui.SoruEkleActivity"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+            android:exported="true"/>
         <activity
             android:name=".ui.SorulariGoruntuleSecimEkrani"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
-        <activity android:name=".ui.SorulariGoruntuleActivity" />
-        <activity android:name=".ui.AyarlarActivity" />
-        <activity android:name=".ui.HomeActivity" />
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+            android:exported="true"/>
+        <activity android:name=".ui.SorulariGoruntuleActivity"
+            android:exported="true"/>
+        <activity android:name=".ui.AyarlarActivity"
+            android:exported="true"/>
+        <activity android:name=".ui.HomeActivity"
+            android:exported="true" />
         <activity
             android:name=".ui.SoruActivity"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
-        <activity android:name=".ui.SiseDondurmeActivity" />
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+            android:exported="true"/>
+        <activity android:name=".ui.SiseDondurmeActivity"
+            android:exported="true"/>
         <activity
             android:name=".ui.SecimEkraniActivity"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+            android:exported="true" />
         <activity
             android:name=".ui.SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Transparent.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

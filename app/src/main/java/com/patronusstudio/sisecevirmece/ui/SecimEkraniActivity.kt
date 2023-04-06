@@ -1,6 +1,7 @@
 package com.patronusstudio.sisecevirmece.ui
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.patronusstudio.sisecevirmece.R
@@ -8,7 +9,6 @@ import com.patronusstudio.sisecevirmece.databinding.ActivitySecimEkraniBinding
 import com.patronusstudio.sisecevirmece.enums.DogrulukCesaret
 import com.patronusstudio.sisecevirmece.util.extSayfaGecisi
 import com.patronusstudio.sisecevirmece.util.extStatusBarColor
-import kotlinx.android.synthetic.main.activity_secim_ekrani.view.*
 
 class SecimEkraniActivity : AppCompatActivity() {
 
@@ -22,13 +22,12 @@ class SecimEkraniActivity : AppCompatActivity() {
         binding.cesaret = DogrulukCesaret.CESARET.isim
         binding.dogruluk = DogrulukCesaret.DOGRULUK.isim
 
-
-        binding.cardviewGroup.imgCesaret.setOnClickListener {
+        binding.cardviewGroup.findViewById<ImageView>(R.id.imgCesaret).setOnClickListener {
             it.context.extSayfaGecisi(SoruActivity::class.java)
             finish()
         }
 
-        binding.cardviewGroup.imgDogruluk.setOnClickListener {
+        binding.cardviewGroup.findViewById<ImageView>(R.id.imgDogruluk).setOnClickListener {
             it.context.extSayfaGecisi(
                 SoruActivity::class.java,
                 DogrulukCesaret.DOGRULUK_CESARET.isim,

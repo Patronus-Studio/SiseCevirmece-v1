@@ -3,6 +3,7 @@ package com.patronusstudio.sisecevirmece.ui
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.app.lets_go_splash.CreateAnim
 import com.app.lets_go_splash.OnAnimationListener
@@ -11,7 +12,6 @@ import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.abstracts.CesaretDatabase
 import com.patronusstudio.sisecevirmece.abstracts.DogrulukDatabase
 import com.patronusstudio.sisecevirmece.util.*
-import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -60,7 +60,7 @@ class SplashScreenActivity : AppCompatActivity() {
             onAnimationListener = object : OnAnimationListener {
                 override fun onRepeat() {}
                 override fun onEnd() {
-                    splashScreenImg.visibility = View.GONE
+                    findViewById<ImageView>(R.id.splashScreenImg).visibility = View.GONE
                     this@SplashScreenActivity.extSayfaGecisi(HomeActivity::class.java)
                     finish()
                 }
@@ -68,7 +68,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 override fun onStartAnim() {
                 }
             }
-        ).startSequentialAnimation(view = splashScreenImg)
+        ).startSequentialAnimation(view = findViewById<ImageView>(R.id.splashScreenImg))
 
     }
 

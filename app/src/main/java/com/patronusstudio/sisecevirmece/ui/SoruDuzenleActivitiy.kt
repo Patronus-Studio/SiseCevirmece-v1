@@ -28,8 +28,8 @@ class SoruDuzenleActivitiy : AppCompatActivity() {
         val soruIndexi = intent.getIntExtra(DogrulukCesaret.SORUNUN_INDEXI.isim, 0)
         val getBoolean = intent.getBooleanExtra(DogrulukCesaret.DOGRULUK_CESARET.isim, false)
         val getModel = if (getBoolean)
-            intent.getParcelableExtra(DogrulukCesaret.SORU_MODELI.isim) as DogrulukModel
-        else intent.getParcelableExtra(DogrulukCesaret.SORU_MODELI.isim) as CesaretModel
+            intent.getParcelableExtra<DogrulukModel>(DogrulukCesaret.SORU_MODELI.isim)!!
+        else intent.getParcelableExtra<CesaretModel>(DogrulukCesaret.SORU_MODELI.isim)!!
 
         binding.soruDuzenleOnClick =
             SoruDuzenleOnClickBinding(this, soruIndexi, getBoolean, getModel, activitySonlandir)

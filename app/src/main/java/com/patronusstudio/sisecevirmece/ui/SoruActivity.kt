@@ -13,8 +13,6 @@ import com.patronusstudio.sisecevirmece.enums.DogrulukCesaret
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 import com.patronusstudio.sisecevirmece.util.extStatusBarColor
-import kotlinx.android.synthetic.main.card_soru_alt.view.*
-import kotlinx.android.synthetic.main.card_soru_orta.view.*
 
 class SoruActivity : AppCompatActivity() {
 
@@ -45,16 +43,15 @@ class SoruActivity : AppCompatActivity() {
         bindingText()
         sharedGuncelle()
 
-
-        binding.ortaCard.soru_cevaplandi.setOnClickListener {
+        binding.ortaCard.soruCevaplandi.setOnClickListener {
             finish()
         }
-        binding.ortaCard.soru_soruDegistir.setOnClickListener {
+        binding.ortaCard.soruSoruDegistir.setOnClickListener {
             soruSayisiKontrol(getBooleanIntent)
             bindingText()
             sharedGuncelle()
         }
-        binding.altCard.soru_benSoracagim.setOnClickListener {
+        binding.altCard.soruBenSoracagim.setOnClickListener {
             finish()
         }
 

@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
 
-        this extStatusBarColor "#01A555"
+        //this extStatusBarColor "#01A555"
 
         binding.imgBeer.setOnClickListener {
             this.extSayfaGecisi(SiseDondurmeActivity::class.java)

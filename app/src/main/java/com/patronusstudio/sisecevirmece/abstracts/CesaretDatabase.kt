@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.patronusstudio.sisecevirmece.interfaces.CesaretDao
 import com.patronusstudio.sisecevirmece.model.CesaretModel
 
-@Database(entities = [CesaretModel::class], version = 1)
+@Database(entities = [CesaretModel::class], version = 2)
 abstract class CesaretDatabase : RoomDatabase() {
 
     abstract fun cesaretDao(): CesaretDao

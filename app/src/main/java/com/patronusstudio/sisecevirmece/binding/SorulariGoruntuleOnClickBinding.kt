@@ -3,6 +3,8 @@ package com.patronusstudio.sisecevirmece.binding
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.abstracts.CesaretDatabase
 import com.patronusstudio.sisecevirmece.abstracts.DogrulukDatabase
 import com.patronusstudio.sisecevirmece.enums.DogrulukCesaret
@@ -10,7 +12,6 @@ import com.patronusstudio.sisecevirmece.model.CesaretModel
 import com.patronusstudio.sisecevirmece.model.DogrulukModel
 import com.patronusstudio.sisecevirmece.ui.SoruEkleActivity
 import com.patronusstudio.sisecevirmece.util.extSayfaGecisi
-import kotlinx.android.synthetic.main.activity_sorulari_goruntule.view.*
 
 class SorulariGoruntuleOnClickBinding(private val mContext: Context) {
 
@@ -55,11 +56,12 @@ class SorulariGoruntuleOnClickBinding(private val mContext: Context) {
             CesaretDatabase.getDatabaseManager(mContext).cesaretDao().insertAll(newList)
         }
 
-        view.rootView.sorularRecycler.adapter?.notifyDataSetChanged() ?: Toast.makeText(
-            mContext,
-            "Hata",
-            Toast.LENGTH_SHORT
-        ).show()
+        view.rootView.findViewById<RecyclerView>(R.id.sorularRecycler).adapter?.notifyDataSetChanged()
+            ?: Toast.makeText(
+                mContext,
+                "Hata",
+                Toast.LENGTH_SHORT
+            ).show()
 
     }
 }

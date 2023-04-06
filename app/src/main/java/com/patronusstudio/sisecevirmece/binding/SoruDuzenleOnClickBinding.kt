@@ -2,12 +2,13 @@ package com.patronusstudio.sisecevirmece.binding
 
 import android.content.Context
 import android.view.View
+import com.google.android.material.textfield.TextInputEditText
+import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.abstracts.CesaretDatabase
 import com.patronusstudio.sisecevirmece.abstracts.DogrulukDatabase
 import com.patronusstudio.sisecevirmece.model.CesaretModel
 import com.patronusstudio.sisecevirmece.model.DogrulukModel
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
-import kotlinx.android.synthetic.main.activity_soru_ekle.view.*
 
 class SoruDuzenleOnClickBinding<Model>(
     private val mContext: Context,
@@ -30,7 +31,7 @@ class SoruDuzenleOnClickBinding<Model>(
     }
 
     fun soruGuncelle(view: View) {
-        val yeniSoru = view.rootView.edxGirilenSoru.text
+        val yeniSoru = view.rootView.findViewById<TextInputEditText>(R.id.edxGirilenSoru).text
 
         if (!yeniSoru.isNullOrBlank()) {
 
