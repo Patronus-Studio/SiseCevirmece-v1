@@ -137,6 +137,17 @@ class SharedVeriSaklama(private val mContext: Context) {
             .apply()
     }
 
+    fun putBottleFlip2Dialog() {
+        sharedPreferences.edit()
+            .putBoolean(SharedPref.BOTTLE_FLIP_2.value, true)
+            .apply()
+    }
+
+    fun getBottleFlip2Dialog(): Boolean = sharedPreferences.getBoolean(
+        SharedPref.BOTTLE_FLIP_2.value,
+        false
+    )
+
     fun clearSharedPref() {
         sharedPreferences.edit()
             .clear()

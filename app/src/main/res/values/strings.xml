@@ -12,7 +12,7 @@
     <string name="viski_sisesi">Viski Şişesi</string>
     <string name="sarap_sisesi">Şarap Şişesi</string>
     <string name="gazoz_sisesi">Gazoz Şişesi</string>
-    <string name="surum_v_1_0">Sürüm v1.0</string>
+    <string name="surum_v_1_0">Sürüm v1.1</string>
     <string name="basla">Başla</string>
     <string name="sorular">Sorular</string>
     <string name="ayarlar">Ayarlar</string>
@@ -41,6 +41,7 @@
     <string name="silmek_icin_uzun_bas">SİLMEK VEYA DÜZENLEMEK İÇİN UZUN BASIN</string>
     <string name="soru_kayit_basarili">Kayıt Başarılı</string>
     <string name="soru_kayit_hatali">Girilen soruyu kontrol ediniz.</string>
+    <string name="bottle_game_2_detail">\nArtık sıra sende! Ücretsiz olarak indirilebilen Şişe Çevirmece 2 oyunu, arkadaşlarınızla veya tek başınıza oynayabileceğiniz eğlenceli bir oyundur. Basit kuralları ile ve farklı modlarıyla size gün boyu eğlence sunacak. \n\nEğlenceli bir gece geçirmek isteyenler için Şişe Çevirmece 2 oyunu tam size göre! Ücretsiz olarak indirebilirsiniz ve tek başınıza ya da arkadaşlarınızla oynayabilirsiniz. \n\nHemen indirin ve eğlenmeye başlayın!</string>
 
     <string-array name="cesaretListesi">
         <item>"Alfabeyi tersten oku."</item>

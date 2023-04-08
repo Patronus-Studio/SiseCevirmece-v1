@@ -9,6 +9,7 @@ enum class SharedPref(val value: String) {
     DB_CESARET_SIZE("cesaretListSize"),
     DB_DOGRULUK_LAST_VALUE("dogrulukLastValue"),
     DB_CESARET_LAST_VALUE("cesaretLastValue"),
-    TOOLTIP("tooltip")
+    TOOLTIP("tooltip"),
+    BOTTLE_FLIP_2("bottleFlip2")
 
 }

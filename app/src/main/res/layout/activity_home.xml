@@ -15,10 +15,10 @@
             android:id="@+id/imgBeer"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             app:cardBackgroundColor="#A67CB342"
             app:cardCornerRadius="40dp"
             app:cardElevation="0dp"
+            android:layout_marginVertical="8dp"
             app:layout_constraintBottom_toTopOf="@+id/imgSoru"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -58,10 +58,10 @@
             android:id="@+id/imgSoru"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             app:cardBackgroundColor="#A6D81B60"
             app:cardCornerRadius="40dp"
             app:cardElevation="0dp"
+            android:layout_marginVertical="8dp"
             app:layout_constraintBottom_toTopOf="@+id/imgAyarlar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -100,10 +100,10 @@
             android:id="@+id/imgAyarlar"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             app:cardBackgroundColor="#A6FB8C00"
             app:cardCornerRadius="40dp"
             app:cardElevation="0dp"
+            android:layout_marginVertical="8dp"
             app:layout_constraintBottom_toTopOf="@+id/imgStore"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -145,7 +145,8 @@
             app:cardBackgroundColor="#A6039BE5"
             app:cardCornerRadius="40dp"
             app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/imgApps"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -178,6 +179,49 @@
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imgApps"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#A6039BE5"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="0dp"
+            android:layout_marginVertical="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgStore">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/bizi_oyla"
+                    android:src="@drawable/apps" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="Diğer Oyunlarımız"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
