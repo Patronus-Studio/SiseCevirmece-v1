@@ -1,44 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp"
+    android:orientation="vertical"
+    android:focusable="true">
+
+    <ScrollView
+        android:id="@+id/scroolView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbars="vertical">
+        android:scrollbars="vertical"
+        android:layout_marginVertical="32dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/new_app" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:gravity="center"
-            android:text="Şişe Çevirmece 2 Sıra Sende! - Arkadaşlarınla Eğlenceli ve Unutulmaz Anılar!"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:background="@color/cardview_light_background"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/bottle_game_2_detail"
-            android:textSize="14sp" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="-16dp"
+                android:src="@drawable/new_app"/>
 
-        <ImageView
-            android:id="@+id/play_store_download"
-            android:layout_width="200dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@drawable/playstoredownload" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="Şişe Çevirmece 2 Sıra Sende! - Arkadaşlarınla Eğlenceli ve Unutulmaz Anılar!"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/bottle_game_2_detail"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/play_store_download"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/playstoredownload" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imgClose"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/close"
+        app:layout_constraintBottom_toTopOf="@+id/scroolView"
+        app:layout_constraintEnd_toEndOf="@+id/scroolView"
+        app:layout_constraintTop_toTopOf="@+id/scroolView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

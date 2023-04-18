@@ -49,24 +49,18 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun sharedPrefControl(){
-        val sharedPref = SharedVeriSaklama(this)
+        newAppDialog()
+
+        /*val sharedPref = SharedVeriSaklama(this)
         val isShowed = sharedPref.getBottleFlip2Dialog()
         if(isShowed.not()) {
             newAppDialog()
             sharedPref.putBottleFlip2Dialog()
-        }
+        }*/
     }
     private fun newAppDialog() {
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_new_app_screen)
-        dialog.show()
-        dialog.findViewById<ImageView>(R.id.play_store_download).setOnClickListener {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW, Uri.parse(PlayStore.SISE_CEVIRMECE_2.isim)
-                )
-            )
-        }
+        val dialog = DialogNewAppFragment()
+        dialog.show(supportFragmentManager,"")
     }
 
 }
