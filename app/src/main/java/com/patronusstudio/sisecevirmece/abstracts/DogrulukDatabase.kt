@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.patronusstudio.sisecevirmece.interfaces.DogrulukDao
 import com.patronusstudio.sisecevirmece.model.DogrulukModel
 
-@Database(entities = [DogrulukModel::class], version = 2)
+@Database(entities = [DogrulukModel::class], version = 3)
 abstract class DogrulukDatabase : RoomDatabase() {
 
     abstract fun dogrulukDao(): DogrulukDao

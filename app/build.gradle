@@ -16,8 +16,8 @@ android {
         applicationId "com.patronusstudio.sisecevirmece"
         minSdkVersion 19
         targetSdkVersion 33
-        versionCode 9
-        versionName "1.8"
+        versionCode 10
+        versionName "1.9"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -71,7 +71,7 @@ android {
         annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
         implementation "com.github.sam43:AnimateViewLibrary:1.0.1"
-        implementation 'com.google.android.gms:play-services-ads:22.0.0'
+        implementation 'com.google.android.gms:play-services-ads:19.3.0'
         implementation 'com.android.support:multidex:1.0.3'
         implementation 'com.github.florent37:viewtooltip:1.2.0'
         implementation 'jp.wasabeef:recyclerview-animators:3.0.0'

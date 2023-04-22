@@ -51,12 +51,12 @@ class HomeActivity : AppCompatActivity() {
     private fun sharedPrefControl(){
         newAppDialog()
 
-        /*val sharedPref = SharedVeriSaklama(this)
+        val sharedPref = SharedVeriSaklama(this)
         val isShowed = sharedPref.getBottleFlip2Dialog()
         if(isShowed.not()) {
             newAppDialog()
             sharedPref.putBottleFlip2Dialog()
-        }*/
+        }
     }
     private fun newAppDialog() {
         val dialog = DialogNewAppFragment()
