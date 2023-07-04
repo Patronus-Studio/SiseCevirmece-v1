@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.patronusstudio.sisecevirmece.interfaces.CesaretDao
 import com.patronusstudio.sisecevirmece.model.CesaretModel
 
-@Database(entities = [CesaretModel::class], version = 3)
+@Database(entities = [CesaretModel::class], version = 4)
 abstract class CesaretDatabase : RoomDatabase() {
 
     abstract fun cesaretDao(): CesaretDao
@@ -23,6 +23,8 @@ abstract class CesaretDatabase : RoomDatabase() {
                     CesaretDatabase::class.java,
                     "Cesaret.db"
                 )
+                    //db güncellenirken eski verileri kaldır
+                    .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build()
             }

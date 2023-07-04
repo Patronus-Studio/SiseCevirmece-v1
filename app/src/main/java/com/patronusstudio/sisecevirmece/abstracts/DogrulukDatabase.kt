@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.patronusstudio.sisecevirmece.interfaces.DogrulukDao
 import com.patronusstudio.sisecevirmece.model.DogrulukModel
 
-@Database(entities = [DogrulukModel::class], version = 3)
+@Database(entities = [DogrulukModel::class], version = 4)
 abstract class DogrulukDatabase : RoomDatabase() {
 
     abstract fun dogrulukDao(): DogrulukDao
@@ -23,6 +23,8 @@ abstract class DogrulukDatabase : RoomDatabase() {
                     DogrulukDatabase::class.java,
                     "Dogruluk.db"
                 )
+                        //db güncellenirken eski verileri kaldır
+                    .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build()
             }
