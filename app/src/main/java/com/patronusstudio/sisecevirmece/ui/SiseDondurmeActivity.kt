@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.applovin.sdk.AppLovinSdk
 import com.bumptech.glide.Glide
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.binding.SiseDondurmeOnClickBinding
 import com.patronusstudio.sisecevirmece.databinding.ActivitySiseDondurmeBinding
-import com.patronusstudio.sisecevirmece.interfaces.AdviewListener
 import com.patronusstudio.sisecevirmece.util.CustomTimer
+import com.patronusstudio.sisecevirmece.util.DrinkUtils
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.extSayfaGecisi
 
@@ -39,19 +38,8 @@ class SiseDondurmeActivity : AppCompatActivity() {
 
     private fun imgKontrol() {
 
-        val resId =
-            when (OyunIslemleri.siseTuru) {
-                1 -> R.drawable.cola
-                2 -> R.drawable.whisky
-                3 -> R.drawable.wine
-                4 -> R.drawable.beer
-                else -> R.drawable.beer
-            }
-
-        Glide
-            .with(this)
-            .load(resId)
-            .into(binding.siseDonen)
+        val imageId = OyunIslemleri.drinks[DrinkUtils().getSelectedSiseTuru().id].imageId
+        Glide.with(this).load(imageId).into(binding.siseDonen)
     }
 
     override fun onResume() {

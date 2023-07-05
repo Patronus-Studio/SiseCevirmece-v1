@@ -9,6 +9,7 @@ import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.abstracts.CesaretDatabase
 import com.patronusstudio.sisecevirmece.abstracts.DogrulukDatabase
 import com.patronusstudio.sisecevirmece.databinding.ActivityOyunSifirlaBinding
+import com.patronusstudio.sisecevirmece.util.DrinkUtils
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 import com.patronusstudio.sisecevirmece.util.SoruEkleme
@@ -66,7 +67,7 @@ class OyunSifirlaActivity : AppCompatActivity() {
         OyunIslemleri.cesaretLastValue = sharedVeriSaklama.getCesaretLastValue()
         OyunIslemleri.dogrulukLastValue = sharedVeriSaklama.getDogrulukLastValue()
 
-        OyunIslemleri.siseTuru = sharedVeriSaklama.getSiseTuru()
+        DrinkUtils().setSelectedDrinks(this,sharedVeriSaklama.getSiseTuru())
     }
 
     override fun onBackPressed() {

@@ -11,7 +11,12 @@ import com.app.lets_go_splash.StarterAnimation
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.abstracts.CesaretDatabase
 import com.patronusstudio.sisecevirmece.abstracts.DogrulukDatabase
-import com.patronusstudio.sisecevirmece.util.*
+import com.patronusstudio.sisecevirmece.util.DrinkUtils
+import com.patronusstudio.sisecevirmece.util.OyunIslemleri
+import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
+import com.patronusstudio.sisecevirmece.util.SoruEkleme
+import com.patronusstudio.sisecevirmece.util.extSayfaGecisi
+import com.patronusstudio.sisecevirmece.util.extStatusBarColor
 
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -34,10 +39,7 @@ class SplashScreenActivity : AppCompatActivity() {
             dogrulukDatabase.dogrulukDao().insertAll(soruEkleme.dogrulukListesiEkleme())
 
             sharedVeriSaklama.putValueForFirstStarted(
-                true,
-                soruEkleme.dogrulukListSize,
-                soruEkleme.cesaretListSize,
-                4
+                true, soruEkleme.dogrulukListSize, soruEkleme.cesaretListSize, 4
             )
         }
 
@@ -47,16 +49,14 @@ class SplashScreenActivity : AppCompatActivity() {
         OyunIslemleri.cesaretLastValue = sharedVeriSaklama.getCesaretLastValue()
         OyunIslemleri.dogrulukLastValue = sharedVeriSaklama.getDogrulukLastValue()
 
-        OyunIslemleri.siseTuru = sharedVeriSaklama.getSiseTuru()
-
+        DrinkUtils().setSelectedDrinks(this, sharedVeriSaklama.getSiseTuru())
         startAnim()
 
 
     }
 
     private fun startAnim() {
-        StarterAnimation(
-            resList = getAnimList(),
+        StarterAnimation(resList = getAnimList(),
             onAnimationListener = object : OnAnimationListener {
                 override fun onRepeat() {}
                 override fun onEnd() {
@@ -67,8 +67,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
                 override fun onStartAnim() {
                 }
-            }
-        ).startSequentialAnimation(view = findViewById<ImageView>(R.id.splashScreenImg))
+            }).startSequentialAnimation(view = findViewById<ImageView>(R.id.splashScreenImg))
 
     }
 

@@ -27,16 +27,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.model.DrinkType
-import com.patronusstudio.sisecevirmece.model.compareAndTransform
 import com.patronusstudio.sisecevirmece.util.AppColor
+import com.patronusstudio.sisecevirmece.util.DrinkUtils
+import com.patronusstudio.sisecevirmece.util.OyunIslemleri
+import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 
 // TODO: compose ekranına çevirebiliriz
 class AyarlarActivity : ComponentActivity() {
+
+    private val sharedPref by lazy {
+        SharedVeriSaklama(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,16 +57,9 @@ class AyarlarActivity : ComponentActivity() {
     @Preview
     @Composable
     private fun BottleTypesCard() {
-        val drinks = remember {
-            mutableStateOf(
-                listOf(
-                    DrinkType(1, "Kola", R.drawable.cola, true),
-                    DrinkType(2, "Bira", R.drawable.beer, false),
-                    DrinkType(3, "Viski", R.drawable.whisky, false),
-                    DrinkType(4, "Şarap", R.drawable.wine, false)
-                )
-            )
-        }
+        val context = LocalContext.current
+        val drinks = remember { mutableStateOf(OyunIslemleri.drinks) }
+        drinks.value[DrinkUtils().getSelectedSiseTuru().id].isSelected = true
         val roundedShape = RoundedCornerShape(32.dp)
         Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             Box(
@@ -78,9 +77,13 @@ class AyarlarActivity : ComponentActivity() {
                     }
                     val gradientColor =
                         listOf(AppColor.Green, AppColor.GreenLight, AppColor.YellowLight)
-                    items(drinks.value.size) {
-                        Bottle(drinks.value[it], gradientColor) {
-                            drinks.value = drinks.value.compareAndTransform(drinks.value[it].id)
+                    items(drinks.value.size) { indeks ->
+                        Bottle(drinks.value[indeks], gradientColor) {
+                            drinks.value = DrinkUtils().compareAndTransform(
+                                drinks.value,
+                                drinks.value[indeks].id
+                            )
+                            DrinkUtils().setSelectedDrinks(context,drinks.value[indeks].id)
                         }
                     }
                 }

@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.RadioButton
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.util.ApplovinUtils
-import com.patronusstudio.sisecevirmece.util.OyunIslemleri
+import com.patronusstudio.sisecevirmece.util.DrinkUtils
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 
 class SiseSecimiOnClickBinding(private val mainView: View, private val activity: Activity) {
@@ -15,8 +15,7 @@ class SiseSecimiOnClickBinding(private val mainView: View, private val activity:
     }
 
     init {
-        val sise = OyunIslemleri.siseTuru
-        setRadioButton(sise)
+        setRadioButton(DrinkUtils().getSelectedSiseTuru().id)
     }
 
     fun imageOnClick(view: View, siseTuru: Int) {
@@ -27,8 +26,9 @@ class SiseSecimiOnClickBinding(private val mainView: View, private val activity:
                 setRadioButton(siseTuru)
                 kayit(islemTuru = siseTuru)
                 isShowed = false
-            }, onAdLoaded = {
-                if(isShowed.not() && it.isReady){
+            },
+            onAdLoaded = {
+                if (isShowed.not() && it.isReady) {
                     it.showAd()
                     isShowed = true
                 }
@@ -62,9 +62,9 @@ class SiseSecimiOnClickBinding(private val mainView: View, private val activity:
         if (isFirstCall) {
             val sharedSiseTuru = model.getSiseTuru()
             setRadioButton(sharedSiseTuru)
-            OyunIslemleri.siseTuru = sharedSiseTuru
+            DrinkUtils().setSelectedDrinks(mainView.context,sharedSiseTuru)
         } else {
-            OyunIslemleri.siseTuru = islemTuru
+            DrinkUtils().setSelectedDrinks(mainView.context,islemTuru)
             model.updateSiseValue(islemTuru)
         }
 
