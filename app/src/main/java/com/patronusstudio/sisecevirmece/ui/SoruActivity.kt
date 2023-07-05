@@ -3,14 +3,11 @@ package com.patronusstudio.sisecevirmece.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.abstracts.CesaretDatabase
 import com.patronusstudio.sisecevirmece.abstracts.DogrulukDatabase
 import com.patronusstudio.sisecevirmece.databinding.ActivitySoruBinding
 import com.patronusstudio.sisecevirmece.enums.DogrulukCesaret
-import com.patronusstudio.sisecevirmece.interfaces.AdviewListener
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 import com.patronusstudio.sisecevirmece.util.extStatusBarColor

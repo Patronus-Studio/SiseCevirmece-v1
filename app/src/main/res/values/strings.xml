@@ -451,4 +451,6 @@
         <item>"Küçükken hiç bir çizgi film karakterine aşık olmuş muydun ?"</item>
 
     </string-array>
+    
+    <string name="interstitial_bottle_select_ad_id">4574d3ead6ec0cce</string>
 </resources>

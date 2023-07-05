@@ -9,15 +9,17 @@ import com.patronusstudio.sisecevirmece.databinding.ActivityAyarlarBinding
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.extSayfaGecisi
 
+// TODO: compose ekranına çevirebiliriz
 class AyarlarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAyarlarBinding
+    private lateinit var siseSecimiOnClickBinding: SiseSecimiOnClickBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_ayarlar)
-
-        binding.mainAyarlar = SiseSecimiOnClickBinding(binding.root)
+        siseSecimiOnClickBinding = SiseSecimiOnClickBinding(binding.root, this)
+        binding.mainAyarlar = siseSecimiOnClickBinding
 
         binding.include2.switch1.setOnCheckedChangeListener { buttonView, isChecked ->
 
@@ -34,7 +36,7 @@ class AyarlarActivity : AppCompatActivity() {
         if (OyunIslemleri.dialogButonunaBasildiMi) {
             OyunIslemleri.dialogButonunaBasildiMi = false
             binding.include2.switch1.isChecked = false
-            binding.mainAyarlar = SiseSecimiOnClickBinding(binding.root)
+            binding.mainAyarlar = siseSecimiOnClickBinding
         }
     }
 
