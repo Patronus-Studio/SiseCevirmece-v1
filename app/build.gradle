@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId "com.patronusstudio.sisecevirmece"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 33
         versionCode 10
         versionName "1.9"
@@ -51,7 +51,19 @@ android {
         }
 
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.5'
+    }
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -81,6 +93,21 @@ android {
         implementation("com.applovin:applovin-sdk:+")
         implementation 'com.applovin.mediation:huawei-adapter:13.4.49.301.3'
 
+        //comose
+        implementation "androidx.core:core-ktx:$compose_core_ktx"
+        implementation "androidx.compose.ui:ui:$compose_ui_version"
+        implementation "androidx.compose.material:material:$compose_material_version"
+        implementation "androidx.compose.ui:ui-tooling-preview:$compose_ui_tooling_preview_version"
+        implementation "androidx.compose.foundation:foundation:$compose_foundation"
+        implementation "androidx.lifecycle:lifecycle-runtime-ktx:$compose_lifecycle_ktx"
+        implementation "androidx.activity:activity-compose:$compose_activity_version"
+        testImplementation "junit:junit:$test_junit"
+        androidTestImplementation "androidx.test.ext:junit:$test_ext_junit"
+        androidTestImplementation "androidx.test.espresso:espresso-core:$test_espresso_core"
+        androidTestImplementation "androidx.compose.ui:ui-test-junit4:$test_ui_test_junit_4"
+        debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_tooling_version"
+        debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_test_manifest"
+        implementation "io.coil-kt:coil-compose:$coil_compose"
     }
 }
 
