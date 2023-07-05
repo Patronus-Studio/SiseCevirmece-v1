@@ -8,4 +8,5 @@ object AppColor {
     val Green = Color(0xFF4CAF50)
     val GreenLight = Color(0xFF8BC34A)
     val YellowLight = Color(0xFFCDDC39)
+    val White = Color(0xFFFFFFFF)
 }

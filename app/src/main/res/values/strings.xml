@@ -453,4 +453,5 @@
     </string-array>
     
     <string name="interstitial_bottle_select_ad_id">4574d3ead6ec0cce</string>
+    <string name="bottle_type">Şişe Türü</string>
 </resources>
