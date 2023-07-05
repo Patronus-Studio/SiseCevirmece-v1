@@ -3,6 +3,10 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'applovin-quality-service'
+}
+applovin {
+    apiKey "pwF6mWBMipKnFmxktAtRgD4_zykhZJ67M7gomPoCsSs4H39APxXQKE0aT19Ckh3nRU4T6mvXJQxdKR7Tc_wUGd"
 }
 android {
     compileSdkVersion 33
@@ -26,6 +30,8 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        buildConfigField "String", "banner_home_screen", "\"f9e54be5176eea47\""
+
     }
 
     buildTypes {
@@ -75,6 +81,8 @@ android {
         implementation 'com.android.support:multidex:1.0.3'
         implementation 'com.github.florent37:viewtooltip:1.2.0'
         implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+        implementation("com.applovin:applovin-sdk:+")
+        implementation 'com.applovin.mediation:huawei-adapter:13.4.49.301.3'
 
     }
 }
