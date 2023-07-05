@@ -4,13 +4,11 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
-import com.patronusstudio.sisecevirmece.BuildConfig
+import com.applovin.sdk.AppLovinSdk
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.databinding.ActivityHomeBinding
 import com.patronusstudio.sisecevirmece.enums.PlayStore
-import com.patronusstudio.sisecevirmece.util.ApplovinUtils
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 import com.patronusstudio.sisecevirmece.util.extSayfaGecisi
 import kotlinx.coroutines.CoroutineScope
@@ -29,6 +27,7 @@ class HomeActivity : AppCompatActivity() {
         sharedPrefControl()
         createBannerAd()
     }
+
 
     private fun sharedPrefControl() {
         newAppDialog()
@@ -66,8 +65,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun createBannerAd() {
-        ApplovinUtils.createBanner(binding.root as ConstraintLayout, BuildConfig.banner_home_screen)
+        binding.adviewBanner.loadAd()
     }
 }
-
 

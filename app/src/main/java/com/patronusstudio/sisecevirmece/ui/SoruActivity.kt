@@ -10,6 +10,7 @@ import com.patronusstudio.sisecevirmece.abstracts.CesaretDatabase
 import com.patronusstudio.sisecevirmece.abstracts.DogrulukDatabase
 import com.patronusstudio.sisecevirmece.databinding.ActivitySoruBinding
 import com.patronusstudio.sisecevirmece.enums.DogrulukCesaret
+import com.patronusstudio.sisecevirmece.interfaces.AdviewListener
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 import com.patronusstudio.sisecevirmece.util.extStatusBarColor
@@ -33,16 +34,16 @@ class SoruActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_soru)
-
         this extStatusBarColor "#00000000"
-
         getBooleanIntent = intent.getBooleanExtra(DogrulukCesaret.DOGRULUK_CESARET.isim, false)
-
-
         soruSayisiKontrol(getBooleanIntent)
         bindingText()
         sharedGuncelle()
+        listener()
+        binding.adviewBanner.loadAd()
+    }
 
+    private fun listener(){
         binding.ortaCard.soruCevaplandi.setOnClickListener {
             finish()
         }
@@ -54,10 +55,6 @@ class SoruActivity : AppCompatActivity() {
         binding.altCard.soruBenSoracagim.setOnClickListener {
             finish()
         }
-
-        MobileAds.initialize(this) {}
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
     }
 
 
@@ -105,7 +102,6 @@ class SoruActivity : AppCompatActivity() {
     }
 
     private fun sharedGuncelle() {
-
         model.updateLastValue(
             OyunIslemleri.dogrulukLastValue,
             OyunIslemleri.cesaretLastValue

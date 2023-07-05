@@ -30,8 +30,6 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
-        buildConfigField "String", "banner_home_screen", "\"f9e54be5176eea47\""
-
     }
 
     buildTypes {

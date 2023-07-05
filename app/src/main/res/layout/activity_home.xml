@@ -225,6 +225,15 @@
 
         </androidx.cardview.widget.CardView>
 
+        <com.applovin.mediation.ads.MaxAdView
+            android:id="@+id/adviewBanner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/banner_height"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            maxads:adUnitId="d3de65fdb9635c5d" />
+
         <FrameLayout
             android:id="@+id/fragHome"
             android:layout_width="match_parent"

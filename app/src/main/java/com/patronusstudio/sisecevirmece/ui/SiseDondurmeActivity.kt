@@ -1,14 +1,15 @@
 package com.patronusstudio.sisecevirmece.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.applovin.sdk.AppLovinSdk
 import com.bumptech.glide.Glide
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.binding.SiseDondurmeOnClickBinding
 import com.patronusstudio.sisecevirmece.databinding.ActivitySiseDondurmeBinding
+import com.patronusstudio.sisecevirmece.interfaces.AdviewListener
 import com.patronusstudio.sisecevirmece.util.CustomTimer
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.extSayfaGecisi
@@ -32,9 +33,7 @@ class SiseDondurmeActivity : AppCompatActivity() {
         binding.sise = SiseDondurmeOnClickBinding()
         binding.customTimer = customTimer
 
-        MobileAds.initialize(this) {}
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
+        binding.adviewBanner.loadAd()
 
     }
 
@@ -58,6 +57,12 @@ class SiseDondurmeActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         binding.siseDonen.isEnabled = true
+        binding.adviewBanner.visibility = View.VISIBLE
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.adviewBanner.visibility = View.INVISIBLE
     }
 
     override fun onBackPressed() {
