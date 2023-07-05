@@ -11,15 +11,23 @@ import kotlin.math.pow
 
 object ApplovinUtils {
 
+    private lateinit var interstitialAd:MaxInterstitialAd
+
     fun createInterstitialAd(
         activity: Activity,
         adUnitId: String,
         onAdLoaded: ((MaxInterstitialAd) -> Unit)? = null,
-        onAdDisplayed: (() -> Unit)? = null,
+        onAdShowed: (() -> Unit)? = null,
         onAdClosed: (() -> Unit)? = null
     ) {
         var retryAttempt = 0.0
-        val interstitialAd = MaxInterstitialAd(adUnitId, activity)
+        if(this::interstitialAd.isInitialized.not()){
+            interstitialAd = MaxInterstitialAd(adUnitId, activity)
+        }else{
+            if(interstitialAd.adUnitId != adUnitId || interstitialAd.activity != activity){
+                interstitialAd = MaxInterstitialAd(adUnitId, activity)
+            }
+        }
         interstitialAd.setListener(object : MaxAdListener {
             override fun onAdLoaded(p0: MaxAd?) {
                 // Interstitial ad is ready to be shown. interstitialAd.isReady() will now return 'true'
@@ -31,14 +39,13 @@ object ApplovinUtils {
             }
 
             override fun onAdDisplayed(p0: MaxAd?) {
-                onAdDisplayed?.let {
-                    onAdDisplayed()
+                onAdShowed?.let {
+                    onAdShowed()
                 }
             }
 
             override fun onAdHidden(p0: MaxAd?) {
                 // Interstitial ad is hidden. Pre-load the next ad
-                interstitialAd.loadAd()
                 onAdClosed?.let {
                     onAdClosed()
                 }

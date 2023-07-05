@@ -32,14 +32,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.model.DrinkType
 import com.patronusstudio.sisecevirmece.util.AppColor
+import com.patronusstudio.sisecevirmece.util.ApplovinUtils
 import com.patronusstudio.sisecevirmece.util.DrinkUtils
+import com.patronusstudio.sisecevirmece.util.LoadingAnimation
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 
@@ -53,10 +54,22 @@ class AyarlarActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val isLoading = remember {
+                mutableStateOf(false)
+            }
             Background()
             Column(modifier = Modifier.fillMaxSize()) {
                 Spacer(modifier = Modifier.height(16.dp))
-                BottleTypesCard()
+                BottleTypesCard(adLoading = {
+                    isLoading.value = true
+                }, adShowed = {
+                    isLoading.value = false
+                })
+            }
+            if(isLoading.value) {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    LoadingAnimation()
+                }
             }
         }
     }
@@ -73,9 +86,8 @@ class AyarlarActivity : ComponentActivity() {
         }
     }
 
-    @Preview
     @Composable
-    private fun BottleTypesCard() {
+    private fun BottleTypesCard(adLoading: () -> Unit, adShowed: () -> Unit) {
         val context = LocalContext.current
         val drinks = remember { mutableStateOf(OyunIslemleri.drinks) }
         drinks.value[DrinkUtils().getSelectedSiseTuru().id].isSelected = true
@@ -91,8 +103,7 @@ class AyarlarActivity : ComponentActivity() {
                     )
             ) {
                 Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.SpaceEvenly
+                    modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceEvenly
                 ) {
                     Row {
                         Spacer(modifier = Modifier.width(16.dp))
@@ -111,10 +122,13 @@ class AyarlarActivity : ComponentActivity() {
                             listOf(AppColor.Green, AppColor.GreenLight, AppColor.YellowLight)
                         items(drinks.value.size) { indeks ->
                             Bottle(drinks.value[indeks], gradientColor) {
-                                drinks.value = DrinkUtils().compareAndTransform(
-                                    drinks.value, drinks.value[indeks].id
-                                )
-                                DrinkUtils().setSelectedDrinks(context, drinks.value[indeks].id)
+                                adLoading()
+                                showInterstitialAd(adShowed = adShowed, adClosed = {
+                                    drinks.value = DrinkUtils().compareAndTransform(
+                                        drinks.value, drinks.value[indeks].id
+                                    )
+                                    DrinkUtils().setSelectedDrinks(context, drinks.value[indeks].id)
+                                })
                             }
                         }
                     }
@@ -157,6 +171,14 @@ class AyarlarActivity : ComponentActivity() {
             }
         }
         Spacer(modifier = Modifier.width(16.dp))
+    }
+
+    private fun showInterstitialAd(adShowed: () -> Unit, adClosed: () -> Unit) {
+        ApplovinUtils.createInterstitialAd(
+            this@AyarlarActivity, "4574d3ead6ec0cce", onAdLoaded = { ad ->
+                ad.showAd()
+            }, onAdShowed = adShowed, onAdClosed = adClosed
+        )
     }
 
 }
