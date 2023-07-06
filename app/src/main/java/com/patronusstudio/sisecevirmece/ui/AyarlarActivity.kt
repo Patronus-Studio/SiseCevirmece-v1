@@ -3,7 +3,6 @@ package com.patronusstudio.sisecevirmece.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -39,8 +38,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.Lifecycle
 import coil.compose.AsyncImage
+import com.patronusstudio.sisecevirmece.BuildConfig
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.model.DrinkType
 import com.patronusstudio.sisecevirmece.util.AppColor
@@ -50,8 +49,6 @@ import com.patronusstudio.sisecevirmece.util.LoadingAnimation
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 import kotlinx.coroutines.delay
-import kotlin.concurrent.timer
-import kotlin.concurrent.timerTask
 
 class AyarlarActivity : ComponentActivity() {
 
@@ -67,15 +64,15 @@ class AyarlarActivity : ComponentActivity() {
             }
             Background()
             Column(
-                modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceEvenly
+                modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceEvenly,
             ) {
-                Spacer(modifier = Modifier.height(16.dp))
                 BottleTypesCard(adLoading = {
                     isLoading.value = true
                 }, adShowed = {
                     isLoading.value = false
                 })
                 ResetGame()
+                VersionCard()
             }
             if (isLoading.value) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -232,6 +229,30 @@ class AyarlarActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    @Composable
+    private fun VersionCard() {
+        val roundedShape = RoundedCornerShape(32.dp)
+        Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Box(
+                Modifier
+                    .fillMaxWidth(0.9f)
+                    .clip(roundedShape)
+                    .background(
+                        AppColor.Black.copy(alpha = 0.25f), roundedShape
+                    )
+                    .padding(16.dp), contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Version " + BuildConfig.VERSION_NAME,
+                    fontWeight = FontWeight.Bold,
+                    color = AppColor.White,
+                    fontSize = 16.sp
+                )
+            }
+        }
+
     }
 }
 
