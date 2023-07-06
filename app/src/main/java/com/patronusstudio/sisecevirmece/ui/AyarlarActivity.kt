@@ -1,7 +1,9 @@
 package com.patronusstudio.sisecevirmece.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -15,12 +17,15 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -34,6 +39,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.Lifecycle
 import coil.compose.AsyncImage
 import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.model.DrinkType
@@ -43,8 +49,10 @@ import com.patronusstudio.sisecevirmece.util.DrinkUtils
 import com.patronusstudio.sisecevirmece.util.LoadingAnimation
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
+import kotlinx.coroutines.delay
+import kotlin.concurrent.timer
+import kotlin.concurrent.timerTask
 
-// TODO: compose ekranına çevirebiliriz
 class AyarlarActivity : ComponentActivity() {
 
     private val sharedPref by lazy {
@@ -58,15 +66,18 @@ class AyarlarActivity : ComponentActivity() {
                 mutableStateOf(false)
             }
             Background()
-            Column(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceEvenly
+            ) {
                 Spacer(modifier = Modifier.height(16.dp))
                 BottleTypesCard(adLoading = {
                     isLoading.value = true
                 }, adShowed = {
                     isLoading.value = false
                 })
+                ResetGame()
             }
-            if(isLoading.value) {
+            if (isLoading.value) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     LoadingAnimation()
                 }
@@ -181,6 +192,47 @@ class AyarlarActivity : ComponentActivity() {
         )
     }
 
+    @Composable
+    private fun ResetGame() {
+        val checkedStatus = remember { mutableStateOf(false) }
+        LaunchedEffect(key1 = checkedStatus.value, block = {
+            if (checkedStatus.value) {
+                val resetActivityIntent =
+                    Intent(this@AyarlarActivity, OyunSifirlaActivity::class.java)
+                startActivity(resetActivityIntent)
+                delay(1000L)
+                checkedStatus.value = false
+            }
+        })
+        val roundedShape = RoundedCornerShape(32.dp)
+        Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Box(
+                Modifier
+                    .fillMaxWidth(0.9f)
+                    .clip(roundedShape)
+                    .background(
+                        AppColor.Black.copy(alpha = 0.25f), roundedShape
+                    )
+                    .padding(16.dp)
+            ) {
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.reset_game),
+                        fontWeight = FontWeight.SemiBold,
+                        color = AppColor.White,
+                        fontSize = 20.sp
+                    )
+                    Switch(checked = checkedStatus.value, onCheckedChange = {
+                        checkedStatus.value = checkedStatus.value.not()
+                    })
+                }
+            }
+        }
+    }
 }
 
 

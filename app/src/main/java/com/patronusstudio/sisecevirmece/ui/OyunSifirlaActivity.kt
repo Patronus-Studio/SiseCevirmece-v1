@@ -9,6 +9,7 @@ import com.patronusstudio.sisecevirmece.R
 import com.patronusstudio.sisecevirmece.abstracts.CesaretDatabase
 import com.patronusstudio.sisecevirmece.abstracts.DogrulukDatabase
 import com.patronusstudio.sisecevirmece.databinding.ActivityOyunSifirlaBinding
+import com.patronusstudio.sisecevirmece.interfaces.ActivityStates
 import com.patronusstudio.sisecevirmece.util.DrinkUtils
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
@@ -23,7 +24,6 @@ class OyunSifirlaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_oyun_sifirla)
         this extStatusBarColor "#00000000"
-
         binding.buttonVerileriSil.setOnClickListener {
             binding.veriSilmeProgress.visibility = View.VISIBLE
             veriSil()
@@ -73,6 +73,10 @@ class OyunSifirlaActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         OyunIslemleri.dialogButonunaBasildiMi = true
+    }
+
+    override fun onStop() {
+        super.onStop()
     }
 
 }
