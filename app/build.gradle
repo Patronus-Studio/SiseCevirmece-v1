@@ -32,6 +32,15 @@ android {
         }
     }
 
+    signingConfigs {
+        SiseCevirmece {
+            keyAlias 'PatronusStudio'
+            keyPassword 'PatronusStudio2023!!'
+            storeFile file('SiseCevirmece.jks')
+            storePassword 'PatronusStudio2023!!'
+        }
+    }
+
     buildTypes {
 
         release {
@@ -39,6 +48,7 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                     'proguard-rules.pro'
+            signingConfig signingConfigs.SiseCevirmece
         }
 
         debug {
