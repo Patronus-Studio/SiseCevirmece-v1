@@ -12,6 +12,7 @@ import com.patronusstudio.sisecevirmece.databinding.ActivitySoruEkleBinding
 import com.patronusstudio.sisecevirmece.enums.DogrulukCesaret
 import com.patronusstudio.sisecevirmece.model.CesaretModel
 import com.patronusstudio.sisecevirmece.model.DogrulukModel
+import com.patronusstudio.sisecevirmece.util.ApplovinUtils
 import com.patronusstudio.sisecevirmece.util.OyunIslemleri
 import com.patronusstudio.sisecevirmece.util.SharedVeriSaklama
 import com.patronusstudio.sisecevirmece.util.extStatusBarColor
@@ -29,37 +30,36 @@ class SoruEkleActivity : AppCompatActivity() {
 
         binding.butonSoruEkle.setOnClickListener {
             val girilenSoru = binding.edxGirilenSoru.text
-            val sonuc = textControl(girilenSoru, getBooleanIntent)
+            textControl(girilenSoru, getBooleanIntent)
+        }
+    }
 
-            if (sonuc) {
+    private fun textControl(girilenSoru: Editable?, getBooleanIntent: Boolean){
+        if (!girilenSoru.isNullOrBlank()) {
+            ApplovinUtils.createInterstitialAd(this, "0f2225785dad5aba", onAdClosed = {
+                val sharedPref = SharedVeriSaklama(this)
+                if (getBooleanIntent) {
+                    val model = DogrulukModel(soru = girilenSoru.toString())
+                    DogrulukDatabase.getDatabaseManager(this).dogrulukDao().insert(model)
+                    OyunIslemleri.dogrulukSize++
+                    sharedPref.updateDogrulukSize(OyunIslemleri.dogrulukSize)
+                } else {
+                    val model = CesaretModel(soru = girilenSoru.toString())
+                    CesaretDatabase.getDatabaseManager(this).cesaretDao().insert(model)
+                    OyunIslemleri.cesaretSize++
+                    sharedPref.updateCesaretSize(OyunIslemleri.cesaretSize)
+                }
+                OyunIslemleri.guncellenenSoru = girilenSoru.toString()
+                OyunIslemleri.soruEklendiMi = true
                 Toast.makeText(this, getString(R.string.soru_kayit_basarili), Toast.LENGTH_SHORT)
                     .show()
                 finish()
-            } else Toast.makeText(this, getString(R.string.soru_kayit_hatali), Toast.LENGTH_SHORT)
-                .show()
-        }
-
-    }
-
-    private fun textControl(girilenSoru: Editable?, getBooleanIntent: Boolean): Boolean {
-
-        return if (!girilenSoru.isNullOrBlank()) {
-            val sharedPref = SharedVeriSaklama(this)
-            if (getBooleanIntent) {
-                val model = DogrulukModel(soru = girilenSoru.toString())
-                DogrulukDatabase.getDatabaseManager(this).dogrulukDao().insert(model)
-                OyunIslemleri.dogrulukSize++
-                sharedPref.updateDogrulukSize(OyunIslemleri.dogrulukSize)
-            } else {
-                val model = CesaretModel(soru = girilenSoru.toString())
-                CesaretDatabase.getDatabaseManager(this).cesaretDao().insert(model)
-                OyunIslemleri.cesaretSize++
-                sharedPref.updateCesaretSize(OyunIslemleri.cesaretSize)
-            }
-            OyunIslemleri.guncellenenSoru = girilenSoru.toString()
-            OyunIslemleri.soruEklendiMi = true
+            }, onAdLoaded = {
+                it.showAd()
+            })
             true
-        } else false
+        } else Toast.makeText(this, getString(R.string.soru_kayit_hatali), Toast.LENGTH_SHORT)
+            .show()
 
     }
 }
